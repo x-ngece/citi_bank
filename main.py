@@ -1,83 +1,34 @@
+from cProfile import label
+from doctest import master
+from tkinter import Frame
 import customtkinter
-# Import datetime module for logging transaction timestamps
-from datetime import datetime
 
-try:
-    # Create BankData.txt if it does not exist
-    with open("BankData.txt", "x") as bank_data_file:
-        bank_data_file.write("0.0")  # Initial balance set to 0.0
-    
-    # Create TransactionLog.txt if it does not exist
-    with open("TransactionLog.txt", "x") as transaction_log_file:
-        pass  # No initial content
-    
-    print("Bank data files created successfully.")
-except FileExistsError:
-    print("Bank data files already exist.")
-except Exception as e:
-    print(f"An error occurred: {str(e)}")
+customtkinter.set_appearance_mode("light")
+customtkinter.set_default_color_theme("dark-blue")
 
-try:
-    # Read initial bank balance from BankData.txt
-    with open("BankData.txt", "r") as file:
-        balance = float(file.read())
-
-    # Prompt user for transaction
-    while True:
-        transaction_choice = input("Would you like to make a transaction? (Yes or No): ").lower()
-        if transaction_choice == "no":
-            break
-        elif transaction_choice != "yes":
-            print("You provided an invalid input.")
-            continue
-        
-        # Prompt user for deposit or withdrawal
-        action_choice = input("Would you like to make a deposit or withdrawal? (Deposit or Withdrawal): ").lower()
-        if action_choice == "deposit":
-            amount = float(input("How much would you like to deposit? "))
-            balance += amount
-        elif action_choice == "withdrawal":
-            amount = float(input("How much would you like to withdraw? "))
-            if amount > balance:
-                print("Insufficient funds.")
-                continue
-            balance -= amount
-        else:
-            print("You provided an invalid input.")
-            continue
-        
-        # Update BankData.txt
-        with open("BankData.txt", "w") as file:
-            file.write(str(balance))
-        
-        # Log transaction
-        with open("TransactionLog.txt", "a") as file:
-            file.write(f"{action_choice.capitalize()} of {amount} at {datetime.now()}\n")
-        
-        print(f"Transaction successful. Updated balance: {balance}")
-
-    # Display final balance
-    print(f"Current balance: {balance}")
-
-except FileNotFoundError:
-    print("Bank data files not found. Please ensure BankData.txt and TransactionLog.txt exist.")
-except ValueError:
-    print("Invalid input. Please enter a valid number.")
-except Exception as e:
-    print(f"An error occurred: {str(e)}")
+root = customtkinter.CTk()
+root.geometry("500x350")
 
 
-# customtkinter.set_appearance_mode("light")
-# customtkinter.set_default_color_theme("dark-blue")
+def login():
+    print("Testing!")
 
-# def button_callback():
-#     print("button pressed")
+frame = customtkinter.CTkFrame(master=root)
+frame.pack(pady=20, padx=60, fill="both", expand=True)
 
-# app = customtkinter.CTk()
-# app.title("Citi Bank App")
-# app.geometry("400x150")
+label= customtkinter.CTkLabel(master=frame, text="Login System")
+label.pack(pady=12, padx=10)
 
-# button = customtkinter.CTkButton(app, text="Click", command=button_callback)
-# button.grid(row=0, column=0, padx=20, pady=20)
+entry1 = customtkinter.CTkEntry(master=frame, placeholder_text="Email")
+entry1.pack(pady=12, padx=10)
 
-# app.mainloop()
+entry2 = customtkinter.CTkEntry(master=frame, placeholder_text="Password", show="*")
+entry2.pack(pady=12, padx=10)
+
+button = customtkinter.CTkButton(master=frame, text="Login", command=login)
+button.pack(pady=12, padx=10)
+
+checkbox = customtkinter.CTkCheckBox(master=frame, text="Remember me")
+checkbox.pack(pady=12, padx=10)
+
+root.mainloop()
