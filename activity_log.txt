@@ -1,0 +1,4 @@
+2024-05-15 15:06:20.559673 - Login attempt failed for : Invalid credentials.
+2024-05-15 15:07:32.885639 - Registration failed for : Invalid email format.
+2024-05-15 15:11:25.064526 - Login attempt failed for : Invalid credentials.
+2024-05-15 15:11:36.030649 - Registration failed for : Invalid email format.

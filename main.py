@@ -2,12 +2,14 @@ from cProfile import label
 from doctest import master
 from tkinter import Frame
 import customtkinter
+import bcrypt
 
-customtkinter.set_appearance_mode("light")
+customtkinter.set_appearance_mode("dark")
 customtkinter.set_default_color_theme("dark-blue")
 
 root = customtkinter.CTk()
-root.geometry("500x350")
+root.title("Cap Bank")
+root.geometry("1024x768")
 
 
 def login():
@@ -20,7 +22,7 @@ label= customtkinter.CTkLabel(master=frame, text="Login System")
 label.pack(pady=12, padx=10)
 
 entry1 = customtkinter.CTkEntry(master=frame, placeholder_text="Email")
-entry1.pack(pady=12, padx=10)
+entry1.pack(pady=100, padx=10)
 
 entry2 = customtkinter.CTkEntry(master=frame, placeholder_text="Password", show="*")
 entry2.pack(pady=12, padx=10)
